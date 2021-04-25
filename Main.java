@@ -12,14 +12,50 @@ public class Main {
         int hpUsr = 150;
         int hpPC = 11;
         int countSpell = 5;
-        int atack;
+        int atackUsuario;
+        int atackMaquina;
 
         while (hpUsr > 0 && hpPC > 0){
 
             imprimir(hpUsr,hpPC,countSpell);
-            atack = attackUsr();
-            switch (atack)
+            atackUsuario = attackUsr();
+            switch (atackUsuario){
+                case 1:
+                    System.out.println("Dano do usuario por soco.");
+                    hpPC -= 7;
+                    break;
+                case 2:
+                    System.out.println("Dano do usuario por especial.");
+                    hpPC -= 20;
+                    countSpell--;
+                    break;
+                default:
+                    System.out.println("Opcao invalida.");
+                    break;
+            }
 
+            if (hpPC > 0) {
+                atackMaquina = attackenemy();
+
+                switch (atackMaquina) {
+                    case 1:
+                        System.out.println("Dano do Inimgo por soco.");
+                        hpUsr -=2;
+                        break;
+                    case 2:
+                        System.out.println("Dano do Inimgo por chute.");
+                        hpUsr -=3;
+                        break;
+                    case 3:
+                        System.out.println("Dano do Inimgo por especial.");
+                        hpUsr -=4;
+                        break;
+                }
+            }
+
+            else {
+                System.out.println("Inimigo Derrotado");
+            }
         }
     }
 
@@ -52,6 +88,8 @@ public class Main {
         int continued = 1;
 
         while (continued == 1) {
+
+            batle();
 
             System.out.println("Fim de jogo. Deseja continuar? (1) Sim (2) Não");
             continued = read.nextInt();
