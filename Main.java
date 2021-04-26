@@ -14,48 +14,59 @@ public class Main {
         int countSpell = 5;
         int atackUsuario;
         int atackMaquina;
+        int i = 1;
 
-        while (hpUsr > 0 && hpPC > 0){
+        while (hpUsr >0) {
 
-            imprimir(hpUsr,hpPC,countSpell);
-            atackUsuario = attackUsr();
-            switch (atackUsuario){
-                case 1:
-                    System.out.println("Dano do usuario por soco.");
-                    hpPC -= 7;
-                    break;
-                case 2:
-                    System.out.println("Dano do usuario por especial.");
-                    hpPC -= 20;
-                    countSpell--;
-                    break;
-                default:
-                    System.out.println("Opcao invalida.");
-                    break;
-            }
+            hpPC = 10 + 1;
+            System.out.println("==================");
+            System.out.println("INIMIGO nº" +i);
+            System.out.println("==================\n");
 
-            if (hpPC > 0) {
-                atackMaquina = attackenemy();
+            while (hpUsr > 0 && hpPC > 0) {
 
-                switch (atackMaquina) {
+                imprimir(hpUsr, hpPC, countSpell);
+                atackUsuario = attackUsr();
+                switch (atackUsuario) {
                     case 1:
-                        System.out.println("Dano do Inimgo por soco.");
-                        hpUsr -=2;
+                        System.out.println("Dano do usuario por soco.");
+                        hpPC -= 7;
                         break;
                     case 2:
-                        System.out.println("Dano do Inimgo por chute.");
-                        hpUsr -=3;
+                        System.out.println("Dano do usuario por especial.");
+                        hpPC -= 20;
+                        if(countSpell > 0) countSpell--;
+                        else System.out.println("Sem especiais disponiveis. Tente outro golpe");
                         break;
-                    case 3:
-                        System.out.println("Dano do Inimgo por especial.");
-                        hpUsr -=4;
+                    default:
+                        System.out.println("Opcao invalida.");
                         break;
                 }
-            }
 
-            else {
-                System.out.println("Inimigo Derrotado.");
+                if (countSpell > 0) {
+                    if (hpPC > 0) {
+                        atackMaquina = attackenemy();
+
+                        switch (atackMaquina) {
+                            case 1:
+                                System.out.println("Dano do Inimgo por soco.");
+                                hpUsr -= 2 + (int) (i / 10);
+                                break;
+                            case 2:
+                                System.out.println("Dano do Inimgo por chute.");
+                                hpUsr -= 3 + (int) (i / 10);
+                                break;
+                            case 3:
+                                System.out.println("Dano do Inimgo por especial.");
+                                hpUsr -= 4 + (int) (i / 20);
+                                break;
+                        }
+                    } else {
+                        System.out.println("Inimigo Derrotado.");
+                    }
+                }
             }
+            i ++;
         }
     }
 
@@ -64,8 +75,8 @@ public class Main {
         System.out.println("===================");
         System.out.println("- HP Usuario: " + hpUsr);
         System.out.println("- HP Inimigo: " + hpPC);
-        System.out.println("- ContagemEspecial" + countSpell);
-        System.out.println("===================");
+        System.out.println("- Especiais disponiveis: " + countSpell);
+        System.out.println("===================\n");
     }
 
     static int attackUsr() {
