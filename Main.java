@@ -54,7 +54,7 @@ public class Main {
             }
 
             else {
-                System.out.println("Inimigo Derrotado");
+                System.out.println("Inimigo Derrotado.");
             }
         }
     }
@@ -62,8 +62,8 @@ public class Main {
     static void imprimir (int hpUsr, int hpPC, int countSpell){
 
         System.out.println("===================");
-        System.out.println("- HP Usuario" + hpUsr);
-        System.out.println("- HP Inimigo" + hpPC);
+        System.out.println("- HP Usuario: " + hpUsr);
+        System.out.println("- HP Inimigo: " + hpPC);
         System.out.println("- ContagemEspecial" + countSpell);
         System.out.println("===================");
     }
