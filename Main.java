@@ -11,11 +11,23 @@ public class Main {
 
         int hpUsr = 150;
         int hpPC = 11;
-        int countSpell = 5;
+        int countSpell = 1;
+        int coutemy = 0;
         int atackUsuario;
         int atackMaquina;
         int i = 1;
 
+        if (coutemy == 10)
+        {
+            coutemy = 0;
+            hpUsr += 300;
+            countSpell += 5;
+
+            System.out.println( " PARABENS !!");
+            System.out.println(" 10 inimigos derrotados, HP Maximo e atual aumentado");
+            System.out.println(" Especiais aumentado para:" + countSpell);
+
+        }
         while (hpUsr >0) {
 
             hpPC = 10 + 1;
@@ -37,6 +49,8 @@ public class Main {
                         hpPC -= 20;
                         if(countSpell > 0) countSpell--;
                         else System.out.println("Sem especiais disponiveis. Tente outro golpe");
+//                        clearScreen();
+
                         break;
                     default:
                         System.out.println("Opcao invalida.");
@@ -62,12 +76,21 @@ public class Main {
                                 break;
                         }
                     } else {
-                        System.out.println("Inimigo Derrotado.");
+                        System.out.println("Inimigo Derrotado.\n");
                     }
                 }
             }
-            i ++;
+
+            if (countSpell > 0){
+                i ++;
+                coutemy ++;
+            }
         }
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     static void imprimir (int hpUsr, int hpPC, int countSpell){
